@@ -1,0 +1,24 @@
+<div class="card my-5">
+  <div class="card-body">
+    <h2 class="bg-secondary text-center text-white py-3">Vehicles list</h2>
+    <br>
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Summary</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let service of servicesList">
+        <td>{{service}}</td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div style="text-align: center;">
+  <li class="list-inline-item">
+    <button (click)="clearApp()" mat-raised-button color="warn">Clear APP</button>
+  </li>
+</div>

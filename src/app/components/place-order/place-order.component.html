@@ -1,0 +1,79 @@
+<div class="card my-5">
+  <div class="card-body">
+    <h2 class="bg-secondary text-center text-white py-3">Order form (Date: {{showDate()}})</h2>
+    <form (ngSubmit)="onSubmit()" #placeOrderForm="ngForm">
+
+      <div class="form-group">
+        <label for="serviceType">Service type: </label>
+        <select class="form-control" id="serviceType"
+                required
+                [(ngModel)]="orderRequest.serviceType" name="serviceType"
+                #serviceType="ngModel">
+          <option *ngFor="let opt of options" [value]="opt">{{opt}}</option>
+        </select>
+        <div [hidden]="serviceType.valid || serviceType.pristine" class="alert alert-danger"></div>
+      <div [hidden]="!serviceType.pristine" class="alert alert-danger">Select your SPA option</div>
+
+      <div class="form-group">
+        <label for="name">Name: </label>
+        <input type="text" [(ngModel)]="orderRequest.name"
+               class="form-control"
+               id="name"
+               name="name"
+               placeholder="Enter Your Name"
+               required #name="ngModel">
+      </div>
+      <div [hidden]="!name.pristine" class="alert alert-danger">Name is required</div>
+
+        <div class="form-group">
+          <label for="surname">Surname: </label>
+          <input type="text" [(ngModel)]="orderRequest.surname"
+                 class="form-control"
+                 id="surname"
+                 name="surname"
+                 placeholder="Enter Your Surname"
+                 required #surname="ngModel">
+        </div>
+        <div [hidden]="!surname.pristine" class="alert alert-danger">Surname is required</div>
+
+        <div class="form-group">
+          <label for="adress">Adress: </label>
+          <input type="text" [(ngModel)]="orderRequest.adress"
+                 class="form-control"
+                 id="adress"
+                 name="adress"
+                 placeholder="Enter Your Adress"
+                 required #adress="ngModel">
+        </div>
+        <div [hidden]="!adress.pristine" class="alert alert-danger">Adress is required</div>
+
+        <div class="form-group">
+          <label for="hour">Choose time: </label>
+          <select class="form-control" id="hour"
+                  required
+                  [(ngModel)]="orderRequest.hour" name="hour"
+                  #hour="ngModel">
+            <option *ngFor="let hou of time" [value]="hou">{{hou}}</option>
+          </select>
+          <div [hidden]="hour.valid || hour.pristine" class="alert alert-danger"></div>
+          <div [hidden]="!hour.pristine" class="alert alert-danger">Select your Time of Service</div>
+        </div>
+
+        <div class="form-group">
+          <label for="additional">Additional serviceSheet:</label>
+          <select class="form-control" id="additional"
+                  [(ngModel)]="orderRequest.additional" name="additional"
+                  #additional="ngModel">
+            <option *ngFor="let add of additionalOptions" [value]="add">{{add}}</option>
+          </select>
+          <div [hidden]="additional.valid || additional.pristine" class="alert alert-danger"></div>
+          <div [hidden]="!additional.pristine" class="alert alert-danger">Select Normal or add Additional Option</div>
+        </div>
+
+      <div style="text-align: center;"><button type="submit" [disabled]="!placeOrderForm.form.valid"
+                                               class="btn btn-info">Place order!</button>
+      </div>
+      </div>
+    </form>
+  </div>
+</div>
